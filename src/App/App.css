@@ -1,0 +1,38 @@
+*, *::before, *::after{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+}
+
+html{
+         font-size: 62.5%;
+}
+
+body{
+         font-size: 1.8rem;
+         background-color: #4649ff;
+         font-family: 'Open Sans', sans-serif;
+}
+
+#root{
+         padding: 2rem;
+         min-height: 100vh;
+         display: flex;
+         gap: 4rem;
+}
+
+h2{
+         font-size: 90%
+}
+
+h3{
+         font-size: 80%;
+}
+
+p{
+         font-size: 80%
+}
+
+li{
+         list-style: none;
+}
