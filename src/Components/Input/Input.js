@@ -1,4 +1,5 @@
 import "./Input.css"
+import { connect  } from "react-redux"
 import React from "react"
 
 
@@ -8,6 +9,8 @@ class Input extends React.Component {
                   super(props)
                   this.state = {input: ''}
          }
+
+        
 
          changeInput = (event) => {
                    this.setState({input: event.target.value})
@@ -37,4 +40,9 @@ class Input extends React.Component {
          }
 }
 
-export default Input
+let mapStateToProps = (state) => {
+    console.log(state)
+    return state
+ }
+
+export default connect(mapStateToProps)(Input)

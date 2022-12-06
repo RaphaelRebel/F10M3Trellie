@@ -16,7 +16,6 @@ class App extends React.Component {
   }
 
   newInput = (descriptie, id) => {
-    console.log(descriptie);
     let copy = [...this.state.trellies];
     let toBeAdded = 
       {
