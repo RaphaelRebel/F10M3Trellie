@@ -19,7 +19,6 @@ const trelliesReducer = (state = [], action) => {
 
     const rootReducer = (state = {}, action) => {
      return {
-          input: inputReducer(state.input, action),
           trellies: trelliesReducer(state.trellies, action)
      }}
 

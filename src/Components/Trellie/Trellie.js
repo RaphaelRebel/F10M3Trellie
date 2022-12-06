@@ -11,10 +11,6 @@ const Trellie = ({ trellie, newInput, id}) => {
             );
       })
 
-      let newInputTrellie = (inputValue, id) => {
-            newInput(inputValue, id)
-      }
-
       return (
             <article className="trellie">
                   <header className="trellie__header">
@@ -27,7 +23,7 @@ const Trellie = ({ trellie, newInput, id}) => {
                   <section className="trellie__section">
                         {listItemsToBeRendered}
                   </section>
-                  <Input id={id} newInput={newInputTrellie} />
+                  <Input id={id} />
             </article>
       )
 }
