@@ -1,9 +1,26 @@
+import { combineReducers } from "redux";
+const inputReducer = (state = 'raphael', action) => {
+     console.log(action)
 
-function myReducer(state, action){
-    if(typeof state === "undefined"){
-         state = 'Raphael'
+    if(action.type === "test"){
+     state = action.payload
     }
          return state
      }
 
-     export default myReducer
+
+const trelliesReducer = (state = [], action) => {
+     if(action.type === 'trellies'){
+          state = action.payload
+     }
+
+     return state
+}
+
+    const rootReducer = (state = {}, action) => {
+     return {
+          input: inputReducer(state.input, action),
+          trellies: trelliesReducer(state.trellies, action)
+     }}
+
+     export default rootReducer

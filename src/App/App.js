@@ -2,21 +2,22 @@ import Trellie from '../Components/Trellie/Trellie';
 import TrelliesData from '../Data/Trellies'
 import "./App.css";
 import React from 'react';
+import {connect} from 'react-redux'
 
 class App extends React.Component {
 
-  constructor() {
-    super()
-    this.state = { trellies: [] }
+  constructor(props) {
+    super(props)
   }
 
+
+
   componentDidMount() {
-    this.setState({ trellies: TrelliesData })
-    console.log(this.state.trellies)
+    this.props.setTrelliesFromRedux(TrelliesData)
   }
 
   newInput = (descriptie, id) => {
-    let copy = [...this.state.trellies];
+    let copy = [...this.props.trelliesFromRedux];
     let toBeAdded = 
       {
         id: copy[id - 1].activities.length + 1,
@@ -27,12 +28,12 @@ class App extends React.Component {
 
     copy[id -1].activities.push(toBeAdded)
 
-    this.setState({ trellies: copy })
+    this.props.setTrelliesFromRedux(copy)
     console.log(this.state.trellies)
   }
   render() {
 
-    let x = this.state.trellies.map(object => {
+    let x = this.props.trelliesFromRedux.map(object => {
       return (<Trellie id={object.id} newInput={this.newInput} key={object.id} trellie={object} />)
     });
     return (
@@ -45,4 +46,16 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    trelliesFromRedux : state.trellies
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setTrelliesFromRedux: (payload) => dispatch({type: "trellies", payload: payload})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

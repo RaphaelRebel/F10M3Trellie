@@ -1,48 +1,46 @@
 import "./Input.css"
-import { connect  } from "react-redux"
-import React from "react"
+import { connect } from "react-redux"
 
 
-class Input extends React.Component {
+const Input = (props) => {
+    const changeInput = (event) => {
+        props.setInputValueFromRedux(event.target.value);
+    }
 
-         constructor(props){
-                  super(props)
-                  this.state = {input: ''}
-         }
+    const onInputSubmit = (event) => {
+        event.preventDefault()
+        if (props.inputValueFromRedux !== '') {
+            props.newInput(props.inputValueFromRedux, props.id)
 
-        
+        }
+    }
 
-         changeInput = (event) => {
-                   this.setState({input: event.target.value})
+    return (
+        <>
+            <form onSubmit={onInputSubmit} action="" className="input">
+                <label htmlFor="input" className="input__label">Nieuwe activiteit</label>
+                <input value={props.inputValueFromRedux} onChange={changeInput} id="input" className="input__input" type="text" placeholder="Boodschappen">
 
-         }
+                </input>
+            </form>
 
-         onInputSubmit = (event) => {
-                  event.preventDefault()
-                  if(this.state.input !== ''){
-                  this.props.newInput(this.state.input, this.props.id)
-                  this.setState({input: ''})
-                  }
-         }
-         render() {
-                  return (
-                           <>
-                                    <form onSubmit={this.onInputSubmit} action="" className="input">
-                                             <label htmlFor="input" className="input__label">Nieuwe activiteit</label>
-                                             <input value={this.state.input} onChange={this.changeInput} id="input" className="input__input" type="text" placeholder="Boodschappen">
+        </>
+    )
 
-                                             </input>
-                                    </form>
 
-                           </>
-                  )
-
-         }
 }
 
 let mapStateToProps = (state) => {
     console.log(state)
-    return state
- }
+    return {
+        inputValueFromRedux: state.input
+    }
+}
 
-export default connect(mapStateToProps)(Input)
+const mapDispatchProps = (dispatch) => {
+    return{
+        setInputValueFromRedux: (payload) => dispatch({type: "test", payload:payload})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Input)

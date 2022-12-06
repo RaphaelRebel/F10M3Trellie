@@ -3,15 +3,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 //Redux
 import { Store, createStore } from "redux";
+
 //React-redux
 import { Provider } from "react-redux";
 //Own
 import App from "./App/App";
 
 //Reducer
-import myReducer from "./Reducers/Reducers";
+import reducers from "./Reducers/Reducers";
 
-const store = createStore(myReducer)
+const store = createStore(reducers)
 
 console.log(store)
 
